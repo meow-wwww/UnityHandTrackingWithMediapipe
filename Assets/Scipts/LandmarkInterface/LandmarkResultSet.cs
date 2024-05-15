@@ -21,7 +21,7 @@ namespace LandmarkInterface
 
         private LandmarkListFilter RightHandFilter;
 
-        private NormalizedLandmarkList leftHandLandmarks;
+        public NormalizedLandmarkList leftHandLandmarks;
         public NormalizedLandmarkList LeftHandLandmarks
         {
             get => leftHandLandmarks;

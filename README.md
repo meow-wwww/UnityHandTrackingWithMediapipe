@@ -46,3 +46,18 @@ To apply hand tracking on your own avatar, follow the below steps:
 This project is under `Apache License 2.0`.
 
 Third party assets used in this project are under their own licenses which can be found in corresponding asset folders.
+
+## HandTracking
+
+### Environment Issue
+
+打开Unity后以下两个报错可以忽略:
+
+- Unable to retrieve package list from http://www.nuget.org/api/v2/FindPackagesById()?id='sharpadbclient'&$orderby=Version asc&$filter=Version eq '2.3.22'
+System.Net.WebException: The remote server returned an error: (400) Bad Request.
+
+- Could not find sharpadbclient 2.3.22 or greater.
+
+### Entry Point
+
+Object 'LandmarkLoader' in the scene 'SampleScene'.
