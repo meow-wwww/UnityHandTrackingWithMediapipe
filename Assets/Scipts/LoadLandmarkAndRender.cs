@@ -8,13 +8,18 @@ using System.IO;
 public class LoadLandmarkAndRender : MonoBehaviour
 {
     // obtain the gameobject named 'HandLandmarkSet' from the scene
-    public GameObject LeftHand;
-    public HandLandmark LeftHandLandmark;
-    public GameObject RightHand;
-    public HandLandmark rightHandLandmark;
+    public GameObject LeftHandGt;
+    public HandLandmark LeftHandLandmarkGt;
+    public GameObject RightHandGt;
+    public HandLandmark rightHandLandmarkGt;
 
-    private StreamReader reader;
-    public string testFilePath = "Assets/CsvData/landmarks_20240325150810_processed.csv";
+    public GameObject LeftHandPred;
+    public HandLandmark LeftHandLandmarkPred;
+    public GameObject RightHandPred;
+    public HandLandmark rightHandLandmarkPred;
+
+    private StreamReader readerGt, readerPred;
+    public string testFilePathGt;
     public float timeInterval = 0.0524f;
 
     public float standardHandLength = 0.1456f; // from wrist to middle finger mcp
@@ -25,46 +30,26 @@ public class LoadLandmarkAndRender : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        LeftHandLandmark = LeftHand.GetComponent<HandLandmark>();
-        rightHandLandmark = RightHand.GetComponent<HandLandmark>();
+        LeftHandLandmarkGt = LeftHandGt.GetComponent<HandLandmark>();
+        rightHandLandmarkGt = RightHandGt.GetComponent<HandLandmark>();
+        LeftHandLandmarkPred = LeftHandPred.GetComponent<HandLandmark>();
+        rightHandLandmarkPred = RightHandPred.GetComponent<HandLandmark>();
 
-        // // print the default right hand landmark position
-        // string rightHandDefaultLocalPosition = "";
-        // for (int i = 0; i < rightHandLandmark.LandmarkObjects.Count; i++)
-        // {
-        //     rightHandDefaultLocalPosition += rightHandLandmark.LandmarkObjects[i].transform.localPosition.x.ToString() + ",";
-        //     rightHandDefaultLocalPosition += rightHandLandmark.LandmarkObjects[i].transform.localPosition.y.ToString() + ",";
-        //     rightHandDefaultLocalPosition += rightHandLandmark.LandmarkObjects[i].transform.localPosition.z.ToString() + ",";
-        // }
-        // Debug.Log("Local Position: " + rightHandDefaultLocalPosition);
-        // float defaultRightHandLength = Vector3.Distance(
-        //     rightHandLandmark.LandmarkObjects[0].transform.localPosition,
-        //     rightHandLandmark.LandmarkObjects[9].transform.localPosition
-        // );
-        // Debug.Log("Default Right Hand Length: " + defaultRightHandLength);
+        readerGt = new StreamReader(testFilePathGt);
+        readerGt.ReadLine(); // skip the first line (header line)
+        
+        string testFilePathPred = testFilePathGt.Replace("gt.csv", "pred.csv");
+        readerPred = new StreamReader(testFilePathPred);
+        readerPred.ReadLine(); // skip the first line (header line)
 
-        // float defaultLeftHandLength = Vector3.Distance(
-        //     LeftHandLandmark.LandmarkObjects[0].transform.localPosition,
-        //     LeftHandLandmark.LandmarkObjects[9].transform.localPosition
-        // );
-        // Debug.Log("Default Left Hand Length: " + defaultLeftHandLength);
-
-        reader = new StreamReader(testFilePath);
-        reader.ReadLine(); // skip the first line (header line)
-
-        InvokeRepeating("ReadCSV", 0.5f, timeInterval);
+        InvokeRepeating("ReadCSVGtWrapper", 0.5f, timeInterval);
+        InvokeRepeating("ReadCSVPredWrapper", 0.5f, timeInterval);
     }
 
-    // void ContinueRead()
-    // {
-    //     string line = reader.ReadLine();
-    //     Debug.Log("[Read a new line]" + line);
-    // }
-
-    void ReadCSV()
+    void ReadCSV(StreamReader reader, HandLandmark rHandLandmark)
     {
         // print right hand's local rotation
-        Debug.Log("right hand local rotation:"+RightHand.transform.localEulerAngles.ToString());
+        // Debug.Log("right hand local rotation:"+RightHand.transform.localEulerAngles.ToString());
         try
         {
             string line;
@@ -86,21 +71,28 @@ public class LoadLandmarkAndRender : MonoBehaviour
             {
                 int pointId = (i - 1) / 3;
                 // Debug.Log("Parse point" + pointId);
-                rightHandLandmark.LandmarkObjects[pointId].transform.localPosition = (new Vector3(
+                rHandLandmark.LandmarkObjects[pointId].transform.localPosition = (new Vector3(
                     float.Parse(items[i]), 
                     float.Parse(items[i + 1]), 
                     float.Parse(items[i + 2])) - wristPosition)/factor;
             }
         }
-        catch (IOException e)
+        catch (Exception e)
         {
-            Debug.Log("读取文件时发生错误: " + e.Message);
+            Debug.Log("读取文件"+reader.ToString()+"时发生错误: " + e.Message);
         }
 
-
-        // LeftHandLandmark.LandmarkObjects[0].transform.position = new Vector3(0.0f, 0.1f, 0.0f) + LeftHandLandmark.LandmarkObjects[0].transform.position;
-        // Debug.Log(LeftHandLandmark.LandmarkObjects[0].transform.position);
     }
+
+    void ReadCSVGtWrapper()
+    {
+        ReadCSV(readerGt, rightHandLandmarkGt);
+    }
+    void ReadCSVPredWrapper()
+    {
+        ReadCSV(readerPred, rightHandLandmarkPred);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -110,6 +102,7 @@ public class LoadLandmarkAndRender : MonoBehaviour
 
     void OnDestroy()
     {
-        reader.Close();
+        readerGt.Close();
+        readerPred.Close();
     }
 }
