@@ -51,13 +51,31 @@ Third party assets used in this project are under their own licenses which can b
 
 ### Environment Issue
 
-打开Unity后以下两个报错可以忽略:
+These two error messages may appear when opening the project, but they can be ignored.
 
-- Unable to retrieve package list from http://www.nuget.org/api/v2/FindPackagesById()?id='sharpadbclient'&$orderby=Version asc&$filter=Version eq '2.3.22'
-System.Net.WebException: The remote server returned an error: (400) Bad Request.
+- `Unable to retrieve package list from http://www.nuget.org/api/v2/FindPackagesById()?id='sharpadbclient'&$orderby=Version asc&$filter=Version eq '2.3.22'`
+`System.Net.WebException: The remote server returned an error: (400) Bad Request.`
 
-- Could not find sharpadbclient 2.3.22 or greater.
+- `Could not find sharpadbclient 2.3.22 or greater.`
 
 ### Entry Point
 
 Object 'LandmarkLoader' in the scene 'SampleScene'.
+
+In Inspector, set `Test File Path Gt` to be the absolute path of ground truth data (a csv file). 
+The ground truth file should have name like `<path>/cross_0_gt.csv`. 
+
+There should also be a prediction file, the file name should be `<path>/cross_0_pred.csv`.
+
+#### CSV File Format
+
+Here is an example file: 
+
+```
+ts,0_x,0_y,0_z,1_x,1_y,1_z,2_x,2_y,2_z,3_x,3_y,3_z,4_x,4_y,4_z,5_x,5_y,5_z,6_x,6_y,6_z,7_x,7_y,7_z,8_x,8_y,8_z,9_x,9_y,9_z,10_x,10_y,10_z,11_x,11_y,11_z,12_x,12_y,12_z,13_x,13_y,13_z,14_x,14_y,14_z,15_x,15_y,15_z,16_x,16_y,16_z,17_x,17_y,17_z,18_x,18_y,18_z,19_x,19_y,19_z,20_x,20_y,20_z
+unknown,0.4,0.6,0.0,0.3,0.6,0.0,0.3,0.6,0.0,0.2,0.5,0.0,0.2,0.5,0.0,0.3,0.5,0.0,0.3,0.4,0.0,0.3,0.4,0.0,0.3,0.4,0.0,0.4,0.5,0.0,0.4,0.4,0.0,0.4,0.4,0.0,0.4,0.3,0.0,0.4,0.5,0.0,0.4,0.4,0.0,0.4,0.4,0.0,0.4,0.3,-0.0,0.5,0.5,0.0,0.4,0.4,0.0,0.4,0.4,-0.0,0.4,0.4,-0.0
+unknown,0.4,0.7,0.0,0.4,0.7,0.0,0.3,0.6,0.0,0.3,0.6,0.0,0.3,0.6,0.0,0.4,0.5,0.0,0.3,0.4,0.0,0.3,0.4,0.0,0.3,0.4,0.0,0.4,0.5,0.0,0.4,0.4,0.0,0.4,0.3,0.0,0.4,0.3,0.0,0.4,0.5,0.0,0.4,0.4,0.0,0.4,0.4,-0.0,0.4,0.3,-0.0,0.5,0.5,-0.0,0.4,0.4,-0.0,0.4,0.4,-0.0,0.4,0.4,-0.0
+unknown,0.4,0.7,0.0,0.4,0.7,0.0,0.3,0.6,0.0,0.3,0.6,0.0,0.3,0.5,0.0,0.4,0.5,0.0,0.3,0.4,0.0,0.3,0.4,0.0,0.3,0.4,0.0,0.4,0.5,0.0,0.4,0.4,0.0,0.4,0.3,0.0,0.4,0.3,0.0,0.4,0.5,0.0,0.4,0.4,0.0,0.4,0.4,-0.0,0.4,0.3,-0.0,0.4,0.5,-0.0,0.4,0.4,-0.0,0.4,0.4,-0.0,0.4,0.4,-0.0
+```
+
+`ts` should be the timestamp of its corresponding frame, but it has not been used by the simulator yet.

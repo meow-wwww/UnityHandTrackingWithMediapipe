@@ -248,6 +248,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9144814818443927062, guid: b4226b094e6f24b15868611a7ec2358a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.498
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144814818443927062, guid: b4226b094e6f24b15868611a7ec2358a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.435
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144814818443927062, guid: b4226b094e6f24b15868611a7ec2358a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.243
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4226b094e6f24b15868611a7ec2358a, type: 3}
 --- !u!1 &570970151
@@ -280,14 +295,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LeftHandGt: {fileID: 941825837}
-  LeftHandLandmarkGt: {fileID: 0}
   RightHandGt: {fileID: 1442169200}
-  rightHandLandmarkGt: {fileID: 0}
   LeftHandPred: {fileID: 66597605}
-  LeftHandLandmarkPred: {fileID: 0}
   RightHandPred: {fileID: 102544424}
-  rightHandLandmarkPred: {fileID: 0}
-  testFilePathGt: /Users/apple/Desktop/hand_reconstruction/pkls/yanrong_data/csv/longTimeResult/within/within_0_gt.csv
+  testFilePathGt: /Users/apple/Desktop/hand_reconstruction/pkls/yanrong_data/csv/142323178_slide15/cross_0_gt.csv
   timeInterval: 0.03
   standardHandLength: 0.1456
   factor: 0
@@ -672,7 +683,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596415294}
   m_LocalRotation: {x: 0.0010302883, y: 0.99773717, z: -0.06539504, w: 0.015587177}
-  m_LocalPosition: {x: -0.23, y: 1.71, z: -2.81}
+  m_LocalPosition: {x: -0.23, y: 1.62, z: -2.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -792,6 +803,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144814818443927062, guid: b4226b094e6f24b15868611a7ec2358a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.484
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144814818443927062, guid: b4226b094e6f24b15868611a7ec2358a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.435
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144814818443927062, guid: b4226b094e6f24b15868611a7ec2358a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.242
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4226b094e6f24b15868611a7ec2358a, type: 3}

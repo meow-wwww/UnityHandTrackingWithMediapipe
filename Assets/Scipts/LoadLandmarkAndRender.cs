@@ -9,14 +9,14 @@ public class LoadLandmarkAndRender : MonoBehaviour
 {
     // obtain the gameobject named 'HandLandmarkSet' from the scene
     public GameObject LeftHandGt;
-    public HandLandmark LeftHandLandmarkGt;
+    HandLandmark LeftHandLandmarkGt;
     public GameObject RightHandGt;
-    public HandLandmark rightHandLandmarkGt;
+    HandLandmark rightHandLandmarkGt;
 
     public GameObject LeftHandPred;
-    public HandLandmark LeftHandLandmarkPred;
+    HandLandmark LeftHandLandmarkPred;
     public GameObject RightHandPred;
-    public HandLandmark rightHandLandmarkPred;
+    HandLandmark rightHandLandmarkPred;
 
     private StreamReader readerGt, readerPred;
     public string testFilePathGt;
